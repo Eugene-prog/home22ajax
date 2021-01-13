@@ -10,6 +10,7 @@ const websiteForm = form.elements['website'];
 const usersList = document.querySelector('.users-list');
 gettHttp().then((users) => users.forEach((user) => createUserCard(user)));
 
+/*Обработка события*/
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   const nameValue = nameForm.value;
