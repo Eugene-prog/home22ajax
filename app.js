@@ -31,6 +31,7 @@ form.addEventListener('submit', (e) => {
   e.currentTarget.reset();
 });
 
+/*
 function postHttp(user, cb) {
   const xhr = new XMLHttpRequest();
   xhr.open('POST', requestURL);
@@ -41,6 +42,35 @@ function postHttp(user, cb) {
   });
   xhr.send(JSON.stringify(user));
 }
+*/
+function postHttp(user, cb) {
+  console.log(JSON.stringify(user));
+  return new Promise((resolve, reject) => {
+    fetch(requestURL, {
+      method: 'POST',
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      body: JSON.stringify(user),
+    })
+      .then((responce) => responce.json())
+      .then((json) => cb(json));
+  });
+}
+/*
+fetch(url, {  
+  method: 'post',  
+  headers: {  
+    "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"  
+  },  
+  body: 'foo=bar&lorem=ipsum'  
+})
+.then(json)  
+.then(function (data) {  
+  console.log('Request succeeded with JSON response', data);  
+})  
+.catch(function (error) {  
+  console.log('Request failed', error);  
+});
+*/
 
 function gettHttp() {
   return new Promise((resolve, reject) => {
